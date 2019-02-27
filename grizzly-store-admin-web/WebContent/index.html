@@ -2,13 +2,23 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>LOGIN</title>
+<title>Grizzle Store</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.control-group {
+margin-bottom: 10px;
+text-align: center;
+}
+</style>
 </head>
 <body>
 <form action="login" method="post">
+<div class="control-group">
 Username:<input type="text" name="un"><br>
 Password:<input type="password" name="pw"><br>
-<input type="submit" name="login" value="login">
+<label class="login-field-icon fui-lock" for="login-pass"></label>
+</div>
+<button type="submit" value="Log in" class="btn btn-primary btn-large btn-block">Login </button>
 </form>
 
 </body>

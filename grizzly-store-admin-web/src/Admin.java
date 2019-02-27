@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
-
+import admininfo.Admin1data;
 import javax.servlet.RequestDispatcher;  
 import javax.servlet.ServletException;  
 import javax.servlet.http.HttpServlet;  
@@ -23,6 +23,10 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws Servlet
     
     String n=req.getParameter("un");  
     String p=req.getParameter("pw");  
+    Admin1data obj=new Admin1data();
+    obj.setUser(n);
+    obj.setPass(p);
+    
 	 String jdbc1="com.mysql.jdbc.Driver";
 	 String url="jdbc:mysql://localhost/test";
 	 try
@@ -47,9 +51,13 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws Servlet
          //Handle errors for Class.forName
          e.printStackTrace();
       }
+	 req.setAttribute("un",n);
 	 if(status)
 	 {
 		 req.getRequestDispatcher("/home.jsp").forward(req,res); 
+		 req.getRequestDispatcher("/listproduct.jsp").forward(req,res); 
+		 req.getRequestDispatcher("/viewproduct.jsp").forward(req,res); 
+		 req.getRequestDispatcher("/addproduct.jsp").forward(req,res); 
 	 }
 	 else
 	 {
