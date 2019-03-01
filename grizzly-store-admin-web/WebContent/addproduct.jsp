@@ -82,12 +82,7 @@ div1{
       </div>
 </body>
 </html>
-<form action="addproduct" method="POST">
-
-
-
-
-
+<form action="addproduct" method="GET">
  <div class="w3-col m7">
     
       <div class="w3-row-padding">
@@ -102,8 +97,6 @@ div1{
             </div>
             </div>
             <div class="w3-col m12">
-    
-      
             <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
              <input type="text" name="id" placeholder="Enter Product ID"><br>
               <select name="Category">
@@ -114,9 +107,7 @@ div1{
 <input type="text" name="price"placeholder="Price"><br>
 <input type="submit" name="Add" value="Add"><br>
 <input type="reset" name="Add" value="Cancel">
-            </div>
-          
-       
+            </div>      
       </form>
 </body>
 </html>

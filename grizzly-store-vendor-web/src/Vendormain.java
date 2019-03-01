@@ -6,33 +6,34 @@ import java.sql.SQLException;
 import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import aboutprod.Prod1data;
-
+import data.Inventory1data;
 @WebServlet("/Vendormain")
 public class Vendormain extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Vendordao obj=new Vendordao();
 	List<Prod1data> prods1= new ArrayList<Prod1data>();
+	List<Inventory1data> vend1= new ArrayList<Inventory1data>();
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		res.setContentType("text/html");
-		PrintWriter out = res.getWriter();  
-	    out.print("hello");
-	    String un=req.getParameter("un");  
-	    String pw=req.getParameter("pw"); 
-	    out.print(un+pw);
-	    HttpSession session = req.getSession();
-	    out.print(obj.validate(un, pw));
+		
+	//    HttpSession session = req.getSession();
+	   // out.print(obj.validate(un, pw));
 	 
-			if((obj.validate(un, pw))==1)
-					{
+			
+					
 				  prods1=obj.view();
+				vend1=obj.vendorview();
+			//	System.out.println(vend1);
 				  req.setAttribute("prods",prods1);
-				req.getRequestDispatcher("/main.jsp").forward(req,res); 
-					}
+				  req.setAttribute("vend1", vend1);
+				//  res.sendRedirect("/main1.jsp");
+			req.getRequestDispatcher("/main1.jsp").forward(req,res); 
+					
 		
 	    
 	}

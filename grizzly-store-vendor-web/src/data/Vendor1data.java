@@ -26,10 +26,11 @@ public class Vendor1data {
 	}  
 	public void setPhno(String phno) {  
 	    this.phno = phno;  
+	    
 	}  public String getAddress() {  
 	    return address;  
 	}  
-	public void setOffice(String address) {  
+	public void setAddress(String address) {  
 	    this.address = address;  
 	} 
 	public int getRating() {  

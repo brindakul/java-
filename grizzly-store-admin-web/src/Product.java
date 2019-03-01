@@ -37,10 +37,9 @@ public class Product extends HttpServlet {
 	        int status=ProdDao.save(e); 
 	        System.out.println("<p>Record1");
 	        if(status>0){  
-	        	
-	        	response.sendRedirect(request.getContextPath() + "/listproduct.jsp"); 
-	        }else{  
-	            out.println("Sorry! unable to save record");  
+	        	request.getRequestDispatcher("listproduct").forward(request, response);
+	        	}else{  
+	        		request.getRequestDispatcher("/addproduct.jsp").forward(request, response);  
 	        }  
 	          
 	        out.close();  

@@ -6,10 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="style.css">
+
  <style>
  ul {
   list-style-type: none;
@@ -44,13 +46,12 @@ div1{
 </style>
 </head>
 <body>
-<% 
-String uname=request.getParameter("un");%>
+<% String un=request.getParameter("un");%>
 
 <ul>
 <li><h3>GRIZZLY STORE</h3></li> 
  <li><input type="search" placeholder="Search"></li>
-<li style="float:right; margin-right:100px">   WELCOME,<%out.print(uname); %></li>
+<li style="float:right; margin-right:100px">   WELCOME,<%out.print(un); %></li>
 <li style="float:right"><a href="/grizzly-store-admin-web/index.html">LOGOUT</a></li>
 </ul>
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
@@ -73,3 +74,4 @@ String uname=request.getParameter("un");%>
       </div>
 </body>
 </html>
+

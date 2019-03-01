@@ -12,7 +12,8 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;  
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
-import javax.servlet.http.HttpServletResponse;  
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;  
 public class Admin extends HttpServlet {
 	boolean status=false;
 	int flag=0;
@@ -21,11 +22,17 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws Servlet
 	res.setContentType("text/html");
 	PrintWriter out = res.getWriter();  
     
-    String n=req.getParameter("un");  
-    String p=req.getParameter("pw");  
+    String un=req.getParameter("un");  
+    String pw=req.getParameter("pw"); 
+    HttpSession session = req.getSession();
+   
+
+
     Admin1data obj=new Admin1data();
-    obj.setUser(n);
-    obj.setPass(p);
+    obj.setUser(un);
+    obj.setPass(pw);
+    
+    session.setAttribute("user", obj.getUser());
     
 	 String jdbc1="com.mysql.jdbc.Driver";
 	 String url="jdbc:mysql://localhost/test";
@@ -34,8 +41,8 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws Servlet
 		 Class.forName("com.mysql.jdbc.Driver");
 		 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test","root","password-1");
 		 PreparedStatement stmt = conn.prepareStatement("SELECT un,pw FROM admin where un=? and pw=?");
-         stmt.setString(1,n);
-         stmt.setString(2, p);
+         stmt.setString(1,un);
+         stmt.setString(2, pw);
          
          ResultSet rs = stmt.executeQuery();
          status=rs.next();
@@ -51,13 +58,14 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws Servlet
          //Handle errors for Class.forName
          e.printStackTrace();
       }
-	 req.setAttribute("un",n);
+	 req.setAttribute("un",un);
 	 if(status)
 	 {
-		 req.getRequestDispatcher("/home.jsp").forward(req,res); 
-		 req.getRequestDispatcher("/listproduct.jsp").forward(req,res); 
-		 req.getRequestDispatcher("/viewproduct.jsp").forward(req,res); 
-		 req.getRequestDispatcher("/addproduct.jsp").forward(req,res); 
+		 //req.getRequestDispatcher("/main.jsp").forward(req,res); 
+	 req.getRequestDispatcher("/home.jsp").forward(req,res); 
+//		 req.getRequestDispatcher("/listproduct.jsp").forward(req,res); 
+//		 req.getRequestDispatcher("/viewproduct.jsp").forward(req,res); 
+//		 req.getRequestDispatcher("/addproduct.jsp").forward(req,res); 
 	 }
 	 else
 	 {

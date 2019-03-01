@@ -15,6 +15,30 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Vendormain</servlet-name>
+    <url-pattern>/vendordisplay</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Addproduct</servlet-name>
+    <servlet-class>Addproduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Addproduct</servlet-name>
+    <url-pattern>/addproduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Vendorlogin</servlet-name>
+    <servlet-class>Vendorlogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Vendorlogin</servlet-name>
     <url-pattern>/vendorlogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Vendorlogout</servlet-name>
+    <servlet-class>Vendorlogout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Vendorlogout</servlet-name>
+    <url-pattern>/vendorlogout</url-pattern>
   </servlet-mapping>
 </web-app>
