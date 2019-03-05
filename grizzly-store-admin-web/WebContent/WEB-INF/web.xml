@@ -49,6 +49,14 @@
     <servlet-name>Deleteproduct</servlet-name>
     <url-pattern>/deleteproduct</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Adminlogout</servlet-name>
+    <servlet-class>Adminlogout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Adminlogout</servlet-name>
+    <url-pattern>/adminlogout</url-pattern>
+  </servlet-mapping>
   
   
 </web-app>

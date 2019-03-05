@@ -9,7 +9,8 @@ import java.sql.Statement;
 import java.sql.*;
 import admininfo.Admin1data;
 import javax.servlet.RequestDispatcher;  
-import javax.servlet.ServletException;  
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;
@@ -25,14 +26,16 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws Servlet
     String un=req.getParameter("un");  
     String pw=req.getParameter("pw"); 
     HttpSession session = req.getSession();
-   
-
+	session.setAttribute("un", un);
+    Cookie loginCookie = new Cookie("un",un);
+    loginCookie.setMaxAge(30*60);
+	res.addCookie(loginCookie);
 
     Admin1data obj=new Admin1data();
     obj.setUser(un);
     obj.setPass(pw);
     
-    session.setAttribute("user", obj.getUser());
+   // session.setAttribute("user", obj.getUser());
     
 	 String jdbc1="com.mysql.jdbc.Driver";
 	 String url="jdbc:mysql://localhost/test";
@@ -61,32 +64,44 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws Servlet
 	 req.setAttribute("un",un);
 	 if(status)
 	 {
-		 //req.getRequestDispatcher("/main.jsp").forward(req,res); 
-	 req.getRequestDispatcher("/home.jsp").forward(req,res); 
-//		 req.getRequestDispatcher("/listproduct.jsp").forward(req,res); 
-//		 req.getRequestDispatcher("/viewproduct.jsp").forward(req,res); 
-//		 req.getRequestDispatcher("/addproduct.jsp").forward(req,res); 
+			 req.getRequestDispatcher("/home.jsp").forward(req,res); 
+	
 	 }
 	 else
 	 {
-		 out.print("Enter again");
+		// out.print("Enter again");
 		 flag++;
-		 RequestDispatcher rd=req.getRequestDispatcher("/index.html");
-		 rd.include(req, res);
 		 try{ 
-		 Class.forName("com.mysql.jdbc.Driver");
-		 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test","root","password-1");
-	     Statement st=conn.createStatement();
-	     String sql="Insert into admin(status)"+"values(flag)";
-	     st.executeUpdate(sql);
-		 }
-		 catch(SQLException se) {
-	         //Handle errors for JDBC
-	         se.printStackTrace();
-	      } catch(Exception e) {
-	         //Handle errors for Class.forName
-	         e.printStackTrace();
-	      }
+			 Class.forName("com.mysql.jdbc.Driver");
+			 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test","root","password-1");
+			 PreparedStatement ps=conn.prepareStatement(  
+	                 "UPDATE admin " +
+	       "SET status=? WHERE user=?"); 
+	    ps.setInt(1, flag);
+	    ps.setString(2,un);  
+	    ps.executeUpdate();  
+	    conn.close();
+			 }
+			 catch(SQLException se) {
+		         //Handle errors for JDBC
+		         se.printStackTrace();
+		      } catch(Exception e) {
+		         //Handle errors for Class.forName
+		         e.printStackTrace();
+		      }
+		 
+		 if(flag<=3)
+	     req.getRequestDispatcher("/index.jsp").forward(req,res); 
+		 else
+			{    
+			 out.println("YOU HAVE BEEN LOCKED OUT");
+			//req.getRequestDispatcher("vendorlogout").forward(req, res);
+			session.invalidate();
+			// session = req.getSession(false);
+		}
+				
+	
+		 
 		 
 }
 }

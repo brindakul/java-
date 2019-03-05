@@ -55,33 +55,7 @@ div1{
 </head>
 <body>
 
-
-<ul>
-<li><h3>GRIZZLY STORE</h3></li> 
- <li><input type="search" placeholder="Search"></li>
-<li style="float:right; margin-right:100px">   WELCOME,null</li>
-<li style="float:right"><a href="/grizzly-store-admin-web/index.html">LOGOUT</a></li>
-</ul>
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
-  <!-- The Grid -->
-  <div class="w3-row">
-    <!-- Left Column -->
-    <div class="w3-col m3">
-      <!-- Profile -->
-      <div class="w3-card w3-round w3-white">
-        <div class="w3-container">
-         <h4 class="w3-center">Profile</h4>
-         <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-         <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>ID</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>DESIGNATION</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>OFFICE</p>
-        </div>
-      </div>
-      <br>
-      </div>
-</body>
-</html>
+<jsp:include page="main.jsp"></jsp:include>
 <form action="addproduct" method="GET">
  <div class="w3-col m7">
     
@@ -99,7 +73,7 @@ div1{
             <div class="w3-col m12">
             <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
              <input type="text" name="id" placeholder="Enter Product ID"><br>
-              <select name="Category">
+              <select name="Category" placeholder="Category">
 					<option value="xyz">XYZ</option>
 				</select><br>
 				<input type="text" name="name"placeholder="Name"><br>

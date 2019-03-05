@@ -73,10 +73,10 @@ for(Cookie cookie : cookies){
 		}
 		%>
 <ul>
-<li><h3>GRIZZLY STORE</h3></li> 
+<li><h3>GRIZZLY <p> <img src="C:\Users\765148\Desktop\grizzly.png"></p> STORE</h3></li> 
  <li><input type="search" placeholder="Search"></li>
 <li style="float:right; margin-right:100px">   WELCOME,<%out.print(user); %></li>
-<li style="float:right"><a href="vendorlogout">LOGOUT</a></li>
+<li style="float:right"><a href="vendorlogout"><button type="submit" value="Log out" class="btn btn-primary btn-large btn-block" >Logout </button></a></li>
 </ul>
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
   <!-- The Grid -->
@@ -131,7 +131,7 @@ for(Cookie cookie : cookies){
    <td><a href="viewproduct?name=${a.name}"><button type="submit" value="Log in" class="btn btn-primary btn-large btn-block">VIEW </button>
      <td><a href="addproduct?name=${a.id}"><button type="submit" value="Log in1" class="btn btn-primary btn-large btn-block">ADD</button></a>
  
-    <td><a href="deleteproduct?name=${a.name}"><button type="submit" value="Log in1" class="btn btn-primary btn-large btn-block">REMOVE</button></a>
+    <td><a href="deleteproduct?name=${a.id}"><button type="submit" value="Log in1" class="btn btn-primary btn-large btn-block">REMOVE</button></a>
    </tr>
 </c:forEach>
 

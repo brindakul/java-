@@ -46,13 +46,21 @@ div1{
 </style>
 </head>
 <body>
-<% String un=request.getParameter("un");%>
+<% String user = (String) session.getAttribute("un");
+String userName = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+	if(cookie.getName().equals("un")) userName = cookie.getValue();
+		}
+		}
+		%>
 
 <ul>
 <li><h3>GRIZZLY STORE</h3></li> 
  <li><input type="search" placeholder="Search"></li>
-<li style="float:right; margin-right:100px">   WELCOME,<%out.print(un); %></li>
-<li style="float:right"><a href="/grizzly-store-admin-web/index.html">LOGOUT</a></li>
+<li style="float:right; margin-right:100px">   WELCOME,<%out.print(user); %></li>
+<li style="float:right"><a href="adminlogout"><button type="submit" value="Log out" class="btn btn-primary btn-large btn-block" >Logout </button></a></li>
 </ul>
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
   <!-- The Grid -->

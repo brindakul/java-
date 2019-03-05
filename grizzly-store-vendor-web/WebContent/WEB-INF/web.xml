@@ -41,4 +41,12 @@
     <servlet-name>Vendorlogout</servlet-name>
     <url-pattern>/vendorlogout</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>Vendordelete</servlet-name>
+    <servlet-class>Vendordelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Vendordelete</servlet-name>
+    <url-pattern>/deleteproduct</url-pattern>
+  </servlet-mapping>
 </web-app>

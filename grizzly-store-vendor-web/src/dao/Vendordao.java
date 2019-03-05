@@ -15,7 +15,7 @@ public class Vendordao {
 		try
 	 {
 		 Class.forName("com.mysql.jdbc.Driver");
-		 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test","root","password-1");
+		 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test?useSSL=false","root","password-1");
 		 System.out.println("connection success");
 PreparedStatement stmt = conn.prepareStatement("SELECT user,pass FROM vendor where user=? and pass=?");
         stmt.setString(1,un);
@@ -48,7 +48,7 @@ PreparedStatement stmt = conn.prepareStatement("SELECT user,pass FROM vendor whe
 		try
 	 {
 		 Class.forName("com.mysql.jdbc.Driver");
-		 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test","root","password-1");
+		 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test?useSSL=false","root","password-1");
 		 
 		 String sql="SELECT prod_id,name,brand,category,rating FROM product";
 		 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -99,7 +99,7 @@ PreparedStatement stmt = conn.prepareStatement("SELECT user,pass FROM vendor whe
 		        Prod1data e=new Prod1data();
 		        try{  
 		            Class.forName("com.mysql.jdbc.Driver");  
-		          Connection  con=DriverManager.getConnection("jdbc:mysql://localhost/test","root","password-1");  
+		          Connection  con=DriverManager.getConnection("jdbc:mysql://localhost/test?useSSL=false","root","password-1");  
 		           System.out.println("connection done");
 		            PreparedStatement ps=con.prepareStatement(  
 		                         "insert into vendor1(id) values (?)");  
@@ -119,7 +119,7 @@ PreparedStatement stmt = conn.prepareStatement("SELECT user,pass FROM vendor whe
 			try
 		 {
 			 Class.forName("com.mysql.jdbc.Driver");
-			 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test","root","password-1");
+			 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test?useSSL=false","root","password-1");
 			 
 			 String sql="SELECT p.name,v.id,v.stock,v.req,v.buffer,p.price,p.rating FROM product p,vendor1 v where p.prod_id=v.id";
 			 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -173,7 +173,7 @@ PreparedStatement stmt = conn.prepareStatement("SELECT user,pass FROM vendor whe
 	        Prod1data e=new Prod1data();
 	        try{  
 	            Class.forName("com.mysql.jdbc.Driver");  
-	          Connection  con=DriverManager.getConnection("jdbc:mysql://localhost/test","root","password-1");  
+	          Connection  con=DriverManager.getConnection("jdbc:mysql://localhost/test?useSSL=false","root","password-1");  
 	           System.out.println("connection done");
 	            PreparedStatement ps=con.prepareStatement(  
 	                         "UPDATE vendor " +
@@ -187,6 +187,30 @@ PreparedStatement stmt = conn.prepareStatement("SELECT user,pass FROM vendor whe
 	        }catch(Exception ex){ex.printStackTrace();}  
 	          
 	        return status;  
+	}
+	public void delete(int id)
+	{
+		 try
+		 {
+			 Class.forName("com.mysql.jdbc.Driver");
+			 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/test?useSSL=false","root","password-1");
+			 System.out.println("connection hppnd");
+			 String sql="DELETE  FROM vendor1 where id=?";
+			 PreparedStatement stmt = conn.prepareStatement(sql);
+			 System.out.println("query");
+			 stmt.setInt(1, id);
+			 	 stmt.executeUpdate();
+		 }
+		
+		 catch(SQLException se) {
+		      //Handle errors for JDBC
+		      se.printStackTrace();
+		   } catch(Exception e) {
+		      //Handle errors for Class.forName
+		      e.printStackTrace();
+		   }
+		 
+		 
 	}
 }
 	

@@ -18,10 +18,10 @@ public class Vendorlogin extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();  
-	    out.print("hello");
+	  //  out.print("hello");
 	    String un=req.getParameter("un");  
 	    String pw=req.getParameter("pw"); 
-	    out.print(un+pw);
+	    //out.print(un+pw);
 	    HttpSession session = req.getSession();
 		session.setAttribute("un", un);
 	    Cookie loginCookie = new Cookie("un",un);
@@ -35,15 +35,19 @@ public class Vendorlogin extends HttpServlet {
 		{
 			flag++;
 			obj.enter(un,flag);
+		
+		if(flag<=3)
 			req.getRequestDispatcher("/index.jsp").forward(req,res); 
 			
+		
+		else
+		{    
+			 out.println("YOU HAVE BEEN LOCKED OUT");
+			//req.getRequestDispatcher("vendorlogout").forward(req, res);
+			session.invalidate();
+			// session = req.getSession(false);
 		}
-		if(flag>3)
-		{
-			
-			 session = req.getSession(false);
-		}
-	}
+	}}
 
 	
 	
